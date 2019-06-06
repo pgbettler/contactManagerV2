@@ -30,7 +30,7 @@ const routes = [
   },
   {
       name: 'edit',
-      path: '/edit/:id',
+      path: '/edit',
       component: EditContactComponent
   }
 ];
