@@ -43,6 +43,10 @@
    methods: {
      addContact(){
        console.log(this.contact);
+       let uri = 'http://localhost:4000/contacts/add';
+       this.axios.post(uri, this.contact).then(() => {
+           this.$router.push({name: 'contacts'});
+       });
      }
    }
  }

@@ -38,12 +38,9 @@ export default {
  methods: {
    authenticate(){
         this.$refs.authenticator.authenticate();
-        console.log("hello")
    },
     result(value){
        this.flag = value;
-       console.log(value);
-       console.log(this.flag)
     },
    login () {
      axios.post('users/login', {

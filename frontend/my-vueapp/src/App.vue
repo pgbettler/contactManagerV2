@@ -14,11 +14,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-
-=======
-import HomeComponent from './components/HomeComponent.vue';
->>>>>>> 81131e8cab90478f80a5ed0582320304b527cd52
 export default {
   name: 'app',
   components:{}
