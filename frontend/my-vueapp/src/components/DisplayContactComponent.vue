@@ -1,19 +1,25 @@
 <template>
  <div>
-   <h1>This is the Display Contact Component</h1>
+   <h1>Welcome to Your Contacts</h1>
+<table style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td> 
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td> 
+    <td>94</td>
+  </tr>
+</table>
+  
  </div>
 </template>
 <script>
-   export default {
-       data(){
-       return {
-         contact:{}
-       }
-   },
-   methods: {
-     editContact(){
-       console.log(this.contact);
-     }
-   }
- }
 </script>

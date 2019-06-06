@@ -11,6 +11,7 @@ import HomeComponent from './components/HomeComponent.vue';
 import RegisterComponent from './components/RegisterComponent.vue';
 import CreateContactComponent from './components/CreateContactComponent.vue';
 import EditContactComponent from './components/EditContactComponent.vue';
+import DisplayContactComponent from './components/DisplayContactComponent.vue';
 
 const routes = [
   {
@@ -32,6 +33,11 @@ const routes = [
       name: 'edit',
       path: '/edit',
       component: EditContactComponent
+  },
+  {
+    name: 'view',
+    path: '/view',
+    component: DisplayContactComponent
   }
 ];
 
