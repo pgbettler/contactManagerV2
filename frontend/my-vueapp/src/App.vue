@@ -31,7 +31,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
     .topnav {
         overflow: hidden;
@@ -55,18 +54,9 @@ export default {
     text-decoration: none;
     font-size: 40px;
     }
-    a {
+    router-link {
         color: white;
         text-decoration: none;
-    }
-
-    /* Change the color of links on hover */
-    a:hover {
-    color: whitesmoke;
-    }
-
-    h1:hover {
-    color: whitesmoke;
     }
 
     /* Add a color to the active/current link */
