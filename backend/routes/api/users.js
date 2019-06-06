@@ -83,7 +83,8 @@ router.post("/login", (req, res) => {
                     (err, token) => {
                         res.json({
                             success: true,
-                            token: "Bearer " + token
+                            //token: "Bearer " + token
+                            _id: user.id
                         });
                     }
                 );
@@ -94,6 +95,24 @@ router.post("/login", (req, res) => {
             }
         });
     });
+});
+
+// Delete a username
+// This is for devolopment ONLY
+router.delete('/deleteUser/:userId', (req, res) => {
+    let userId = req.params.usedId;
+
+    User.findOneAndDelete({id: userId}, function(err, user) {
+        if(!user) 
+        {
+            res.status(404).send({error: 'This username does not exists.' + err});
+        }
+        else 
+        {
+            res.status(200).json({ 'user': 'User added :)' });
+            res.status(200).send({'user': user});
+        }
+    })
 });
 
 module.exports = router;
