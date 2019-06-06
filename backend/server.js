@@ -5,15 +5,15 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const passport = require('passport');
+const users = require('./routes/api/users');
 const Contact = require('./models/Contact');
-const Register = require('./models/Register');
-
+//const Register = require('./models/Register');
 const app = express();
 const router = express.Router();
 const port = process.env.PORT;
-mongoose.Promise = global.Promise;
 
+mongoose.Promise = global.Promise;
 app.use(cors());
 app.use(
     bodyParser.urlencoded({
@@ -23,24 +23,41 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/*
 // DB Config
-const db = require("./config/key").mongoURI;
-*/
+const db = require("./config/keys").mongoURI;
 
-mongoose.connect('mongodb://localhost:27017/contactManagement', { useNewUrlParser: true }).then(
+// Connect to Mongo data base
+// mongodb://localhost:27017/contactManagement
+// mongodb+srv://admin:emmanuel@contactmanager-e76xq.mongodb.net/ContactManager
+/*
+mongoose.connect('mongodb://localhost:27017/contactManagement', {
+     useNewUrlParser: true }).then(
     () => { console.log('Database is connected') },
     err => { console.log('Cannot connect to the database' + err) }
-); // Come back to fill in the string later!!!
+);
+*/
+
+// Connect to MongoDB
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
 
 const connection = mongoose.connection;
 
-// Opening connection to the MongoDB database at the beginning when starting the server.
-connection.once('open', () => {
-    console.log('MongoDB database connection established successfully!');
-});
-
 app.use('/', router);
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport config
+require("./config/passport")(passport);
+
+// Routes
+app.use("/api/users", users);
 
 app.use((req, res, next) => {
     let err = new Error('Path Not Found!');
