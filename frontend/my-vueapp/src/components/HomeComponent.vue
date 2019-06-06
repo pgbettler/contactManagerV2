@@ -12,25 +12,39 @@
                        <label for="password">Password</label>
                        <input type="password" v-model="password" class="form-control" name="password" placeholder="Enter Password">
                    </div>
-                   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                   <button class="btn btn-lg btn-primary btn-block" type="button" @click="authenticate">Sign in</button>
+                   <p v-if="flag === '1'">Login Success</p>
                </form>
            </div>
        </div>
+       <authenticator :user="email" :pass="password" ref="authenticator" @resultEvent="result"></authenticator>
    </div>
 </template>
 
 <script>
 import axios from 'axios'
+import Authenticator from "./authenticator";
 
 export default {
- data () {
+    components: {Authenticator},
+    data () {
    return {
      email: '',
-     password: ''
+     password: '',
+     flag:''
    }
  },
 
  methods: {
+   authenticate(){
+        this.$refs.authenticator.authenticate();
+        console.log("hello")
+   },
+    result(value){
+       this.flag = value;
+       console.log(value);
+       console.log(this.flag)
+    },
    login () {
      axios.post('users/login', {
        email: this.email,
