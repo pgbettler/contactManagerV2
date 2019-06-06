@@ -6,7 +6,6 @@
 // 3: Phone number
 // 4: Email address
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
 let Contact = new Schema({
@@ -25,9 +24,10 @@ let Contact = new Schema({
     emailAddress:
     {
         type: String
-    }
+    },
+    approved: Boolean
 });
 
 // The model is created by defining a new Schema first and then creating 
 // the model by using the mongoose.model method.
-module.exports = mongoose.model('Contact', Contact);
+module.exports = Contact;
